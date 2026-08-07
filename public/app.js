@@ -22,9 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // fetch data on load
     loadCompanyData();
     loadDirectoryData();
 
+    // render company information
     async function loadCompanyData() {
         clearError();
         try {
@@ -50,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // render directory list
     async function loadDirectoryData() {
         try {
             const res = await fetch('/api/directory');
@@ -74,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // fetch individual and employment details
     async function loadIndividualData(indId) {
         clearError();
         try {
@@ -118,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    // format and null value handling
     function keyValue(label, value) {
         const val = (value === null || value === undefined || value === '')
             ? '<i>Not Provided (null)</i>'
@@ -130,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     }
 
+    // finch api error handler
     function handleFinchError(data) {
         if (data.isUnimplemented) {
             showError(data.message || 'This provider has not implemented this endpoint.');
@@ -138,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // UI alert banners
     function showError(msg) {
         errorAlert.classList.remove('d-none');
         errorMessage.textContent = msg;
